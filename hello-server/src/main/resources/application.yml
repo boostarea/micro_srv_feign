@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: hello-server
+
+server:
+  port: 8071
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:9070/eureka/
+  instance:
+    instanceId: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+
+
+#feign的配置，连接超时及读取超时配置
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
